@@ -67,7 +67,7 @@
             android:textColor="#FFFFFF"
             android:textSize="15sp"
             android:drawableStart="@drawable/gallery"
-            android:background="@color/mainBtn"
+            android:background="@drawable/button"
             android:onClick="galleryBtnOnClick"
             />
         <Button
@@ -85,7 +85,7 @@
             android:textColor="#FFFFFF"
             android:textSize="15sp"
             android:drawableStart="@drawable/camera"
-            android:background="@color/mainBtn"
+            android:background="@drawable/button"
             android:onClick="cameraBtnOnClick"
             />
     </LinearLayout>
