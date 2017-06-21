@@ -18,35 +18,40 @@ public class MainActivity extends Activity {
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
+        Intent resultIntent;
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case SELECT_PHOTO:
+                    Toast.makeText(this, "Photo selected!", Toast.LENGTH_SHORT).show();
+                    resultIntent = new Intent(MainActivity.this, ResultActivity.class);
+                    startActivity(resultIntent);
+                    break;
+                case IMAGE_CAPTURE:
+                    Toast.makeText(this, "Image captured!", Toast.LENGTH_SHORT).show();
+                    resultIntent = new Intent(MainActivity.this, ResultActivity.class);
+                    startActivity(resultIntent);
+                    break;
 
-        switch(requestCode) {
-            case SELECT_PHOTO: {
-                Toast.makeText(this, "Photo selected!", Toast.LENGTH_LONG).show();
-            }
-            case IMAGE_CAPTURE: {
-                Toast.makeText(this, "Image captured!", Toast.LENGTH_LONG).show();
+
             }
         }
     }
     public void galleryBtnOnClick(View v) {
-        dispatchGalleryIntent();
-    }
-
-    public void cameraBtnOnClick(View v) {
-        dispatchTakePictureIntent();
-    }
-
-    private void dispatchGalleryIntent() {
+        // Dispatch gallery intent
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         startActivityForResult(intent, SELECT_PHOTO);
     }
 
-    private void dispatchTakePictureIntent() {
+    public void cameraBtnOnClick(View v) {
+        // Dispatch camera intent
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, IMAGE_CAPTURE);
         }
+
     }
+
+
 
 }
