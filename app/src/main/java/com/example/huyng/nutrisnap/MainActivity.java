@@ -2,6 +2,7 @@ package com.example.huyng.nutrisnap;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -22,14 +23,22 @@ public class MainActivity extends Activity {
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case SELECT_PHOTO:
-                    Toast.makeText(this, "Photo selected!", Toast.LENGTH_SHORT).show();
-                    resultIntent = new Intent(MainActivity.this, ResultActivity.class);
-                    startActivity(resultIntent);
+                    if (intent != null) {
+                        Toast.makeText(this, "Photo selected!", Toast.LENGTH_SHORT).show();
+                        // Get the URI of the selected image and pass it to resultItent
+                        Uri selectedImage = intent.getData();
+                        resultIntent = new Intent(MainActivity.this, ResultActivity.class);
+                        resultIntent.putExtra("selectedImage", selectedImage.toString());
+                        startActivity(resultIntent);
+                    }
                     break;
                 case IMAGE_CAPTURE:
-                    Toast.makeText(this, "Image captured!", Toast.LENGTH_SHORT).show();
-                    resultIntent = new Intent(MainActivity.this, ResultActivity.class);
-                    startActivity(resultIntent);
+                    if (intent != null) {
+                        Toast.makeText(this, "Image captured!", Toast.LENGTH_SHORT).show();
+                        resultIntent = new Intent(MainActivity.this, ResultActivity.class);
+                        startActivity(resultIntent);
+                    }
+
                     break;
 
 
