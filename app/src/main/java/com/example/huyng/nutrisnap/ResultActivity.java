@@ -10,9 +10,13 @@ import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.util.Size;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.InputStream;
@@ -37,17 +41,22 @@ public class ResultActivity extends Activity {
     private static final Size DESIRED_PREVIEW_SIZE = new Size(640, 480);
 
 
+    public Context getActivityContext() {
+        return this;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Display food image
         ImageView foodImageView = (ImageView) findViewById(R.id.food_image);
         Bundle extras = getIntent().getExtras();
+        Uri imageUri = null;
+
         if (extras != null) {
-            Uri imageUri = null;
             //  Get image URI from intent
             if (extras.containsKey("selectedImage"))
                 imageUri = Uri.parse("file://" + extras.getString("selectedImage"));
@@ -60,7 +69,7 @@ public class ResultActivity extends Activity {
                 Bitmap bitmap= BitmapFactory.decodeStream(image_stream );
                 foodImageView.setImageBitmap(bitmap);
 
-                // Crop bitmap for classifier
+                // Crop bitmap for TensorFlow Classifier
                 Bitmap croppedBitmap = Bitmap.createBitmap(INPUT_SIZE, INPUT_SIZE, Config.ARGB_8888);
                 Matrix transformMatrix = getTransformationMatrix(
                                 bitmap.getWidth(), bitmap.getHeight(),
@@ -74,7 +83,6 @@ public class ResultActivity extends Activity {
 
             } catch (Exception ex) {
                 Toast.makeText(this, "There was a problem", Toast.LENGTH_SHORT).show();
-                Log.i(TAG, imageUri.toString());
                 Log.e(TAG, ex.toString());
             }
 
@@ -82,7 +90,21 @@ public class ResultActivity extends Activity {
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
+    /*
+     * Calculate transformation matrix so that an image can be
+     * cropped and used by TensorFlow Classifier
+     */
     private Matrix getTransformationMatrix(
             final int srcWidth,
             final int srcHeight,
@@ -131,9 +153,7 @@ public class ResultActivity extends Activity {
         return matrix;
     }
 
-    public Context getActivityContext() {
-        return this;
-    }
+
 
     /*
      * Classify image in background
@@ -161,6 +181,10 @@ public class ResultActivity extends Activity {
 
         @Override
         protected void onPostExecute(List results) {
+            View loadingPanel = (View) findViewById(R.id.loading_panel);
+            loadingPanel.setVisibility(View.GONE);
+            TextView resultText = (TextView) findViewById(R.id.result_text);
+            resultText.setVisibility(View.VISIBLE);
             Toast.makeText(getActivityContext(), results.get(0).toString(), Toast.LENGTH_SHORT).show();
         }
     }
