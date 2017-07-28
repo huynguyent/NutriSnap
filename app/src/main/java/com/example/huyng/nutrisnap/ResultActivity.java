@@ -1,12 +1,14 @@
 package com.example.huyng.nutrisnap;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Size;
@@ -40,17 +42,7 @@ public class ResultActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
-        // Create image classifier
-        Classifier classifier =
-                TensorFlowImageClassifier.create(
-                        getAssets(),
-                        MODEL_FILE,
-                        LABEL_FILE,
-                        INPUT_SIZE,
-                        IMAGE_MEAN,
-                        IMAGE_STD,
-                        INPUT_NAME,
-                        OUTPUT_NAME);
+
         // Display food image
         ImageView foodImageView = (ImageView) findViewById(R.id.food_image);
         Bundle extras = getIntent().getExtras();
@@ -77,9 +69,8 @@ public class ResultActivity extends Activity {
                 final Canvas canvas = new Canvas(croppedBitmap);
                 canvas.drawBitmap(bitmap, transformMatrix, null);
 
-                // Classify image
-                List<Classifier.Recognition> results = classifier.recognizeImage(croppedBitmap);
-                Toast.makeText(this, results.get(0).toString(), Toast.LENGTH_SHORT).show();
+                // Classify image in background
+                new ClassifyImageTask().execute(croppedBitmap);
 
             } catch (Exception ex) {
                 Toast.makeText(this, "There was a problem", Toast.LENGTH_SHORT).show();
@@ -140,6 +131,38 @@ public class ResultActivity extends Activity {
         return matrix;
     }
 
+    public Context getActivityContext() {
+        return this;
+    }
 
+    /*
+     * Classify image in background
+     */
+    private class ClassifyImageTask extends AsyncTask<Bitmap, Void, List> {
+        @Override
+        protected List doInBackground(Bitmap... bitmap) {
+            // Create image classifier
+            Classifier classifier =
+                    TensorFlowImageClassifier.create(
+                            getAssets(),
+                            MODEL_FILE,
+                            LABEL_FILE,
+                            INPUT_SIZE,
+                            IMAGE_MEAN,
+                            IMAGE_STD,
+                            INPUT_NAME,
+                            OUTPUT_NAME);
+
+            // Classify image
+            List<Classifier.Recognition> results = classifier.recognizeImage(bitmap[0]);
+
+            return results;
+        }
+
+        @Override
+        protected void onPostExecute(List results) {
+            Toast.makeText(getActivityContext(), results.get(0).toString(), Toast.LENGTH_SHORT).show();
+        }
+    }
 
 }
