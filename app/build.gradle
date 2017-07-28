@@ -17,6 +17,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        abortOnError false
+        disable 'LongLogTag'
+    }
 }
 
 dependencies {
@@ -26,5 +30,6 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'org.tensorflow:tensorflow-android:1.2.0-preview'
     testCompile 'junit:junit:4.12'
 }

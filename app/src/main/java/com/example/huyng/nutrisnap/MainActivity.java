@@ -39,6 +39,7 @@ public class MainActivity extends Activity {
                         startActivity(resultIntent);
                     }
                     break;
+
                 case IMAGE_CAPTURE:
                     // Get the URI of the temporary file and pass it to resultIntent
                     resultIntent = new Intent(MainActivity.this, ResultActivity.class);
@@ -50,15 +51,15 @@ public class MainActivity extends Activity {
         }
     }
 
+    // Dispatch gallery intent
     public void galleryBtnOnClick(View v) {
-        // Dispatch gallery intent
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         startActivityForResult(intent, SELECT_PHOTO);
     }
 
+    // Dispatch camera intent
     public void cameraBtnOnClick(View v) {
-        // Dispatch camera intent
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             // Save image to a temporary file
