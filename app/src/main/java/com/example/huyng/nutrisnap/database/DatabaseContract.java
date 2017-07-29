@@ -1,4 +1,4 @@
-package com.example.huyng.nutrisnap;
+package com.example.huyng.nutrisnap.database;
 
 import android.provider.BaseColumns;
 
