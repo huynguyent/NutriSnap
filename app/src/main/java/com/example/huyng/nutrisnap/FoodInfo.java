@@ -8,7 +8,7 @@ public class FoodInfo {
     int protein;
     int fat;
 
-    public FoodInfo(String name, int serving, int cal, int protein) {
+    public FoodInfo(String name, int serving, int cal, int protein, int fat) {
         this.name = name;
         this.serving = serving;
         this.cal = cal;

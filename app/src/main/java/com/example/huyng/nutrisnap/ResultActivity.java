@@ -21,6 +21,9 @@ import android.widget.Toast;
 import com.example.huyng.nutrisnap.classifier.Classifier;
 import com.example.huyng.nutrisnap.classifier.TensorFlowImageClassifier;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,12 +39,14 @@ public class ResultActivity extends Activity {
 
     private static final String MODEL_FILE = "file:///android_asset/rounded_graph.pb";
     private static final String LABEL_FILE = "file:///android_asset/retrained_labels.txt";
+    private static final String JSON_FILE = "food_data.json";
 
     private static final boolean MAINTAIN_ASPECT = true;
 
     RecyclerAdapter adapter;
     ArrayList<FoodInfo> foodInfos;
 
+    JSONObject jsonReader;
 
     public Context getActivityContext() {
         return this;
@@ -60,7 +65,7 @@ public class ResultActivity extends Activity {
         if (extras != null) {
             //  Get image URI from intent
             if (extras.containsKey("selectedImage"))
-                imageUri = Uri.parse("file://" + extras.getString("selectedImage"));
+                imageUri = Uri.parse(extras.getString("selectedImage"));
             else if (extras.containsKey("capturedImage"))
                 imageUri = Uri.parse("file://" + extras.getString("capturedImage"));
 
@@ -90,6 +95,15 @@ public class ResultActivity extends Activity {
                 adapter = new RecyclerAdapter(bitmap, true, foodInfos);
                 rv.setAdapter(adapter);
 
+                // Initialize json reader to parse food data
+                InputStream is = getAssets().open(JSON_FILE);
+                int size = is.available();
+                byte[] buffer = new byte[size];
+                is.read(buffer);
+                is.close();
+                String jsonString = new String(buffer, "UTF-8");
+                jsonReader = new JSONObject(jsonString);
+
             } catch (Exception ex) {
                 Toast.makeText(this, "There was a problem", Toast.LENGTH_SHORT).show();
                 Log.e(TAG, ex.toString());
@@ -99,16 +113,19 @@ public class ResultActivity extends Activity {
 
     }
 
+
+    /* Respond to the action bar's Up/Home button */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            // Respond to the action bar's Up/Home button
             case android.R.id.home:
                 NavUtils.navigateUpFromSameTask(this);
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 
     /*
      * Calculate transformation matrix so that an image can be
@@ -162,10 +179,17 @@ public class ResultActivity extends Activity {
         return matrix;
     }
 
-
+    FoodInfo getFoodInfoFromName(String foodName) throws JSONException {
+        JSONObject foodInfo = jsonReader.getJSONObject(foodName);
+        int serving = 0;
+        int cal = foodInfo.getInt("calories");
+        int protein = foodInfo.getInt("protein");
+        int fat = foodInfo.getInt("fat");
+        return new FoodInfo(foodName,serving,cal,protein,fat);
+    }
 
     /*
-     * Classify image in background
+     * AsyncTask: Classify image in background
      */
     private class ClassifyImageTask extends AsyncTask<Bitmap, Void, List> {
         @Override
@@ -195,9 +219,13 @@ public class ResultActivity extends Activity {
             loadingPanel.setVisibility(View.GONE);
 
             // Display results
-            for (Object res: results) {
-                Classifier.Recognition recognition =(Classifier.Recognition)res;
-                foodInfos.add(new FoodInfo(recognition.getTitle(),0,0,0));
+            try {
+                for (Object res : results) {
+                    Classifier.Recognition recognition = (Classifier.Recognition) res;
+                    foodInfos.add(getFoodInfoFromName(recognition.getTitle()));
+                }
+            } catch (Exception e) {
+                Log.e(TAG, e.toString());
             }
 
             adapter.notifyDataSetChanged();

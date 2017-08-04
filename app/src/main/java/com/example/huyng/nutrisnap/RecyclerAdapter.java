@@ -67,8 +67,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 FoodInfo foodInfo = foodInfos.get(i - 2);
                 vh.foodName.setText(foodInfo.name);
                 vh.foodCal.setText("Calories: " + foodInfo.cal);
-                vh.foodProtein.setText("Protein: " + foodInfo.protein);
-                vh.foodFat.setText("Fat: " + foodInfo.fat);
+                vh.foodProtein.setText("Protein: " + foodInfo.protein + " g");
+                vh.foodFat.setText("Fat: " + foodInfo.fat + " g");
             }
         } catch (Exception ex) {
             Log.e(TAG, ex.toString());
