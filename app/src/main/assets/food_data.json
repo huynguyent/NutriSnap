@@ -1,0 +1,199 @@
+{"hamburger" : {
+  "serving" : 120,
+  "cal" : 354,
+  "protein" : 20,
+  "fat" : 17
+  },
+"pancake":{
+  "serving" : 0,
+  "cal" : 0,
+  "protein" : 0,
+  "fat" : 0
+  },
+"bread":{
+  "serving" : 0,
+  "cal" : 0,
+  "protein" : 0,
+  "fat" : 0
+},
+"hotdog":{
+  "serving" : 0,
+  "cal" : 0,
+  "protein" : 0,
+  "fat" : 0
+},
+"doughnut":{
+  "serving" : 0,
+  "cal" : 0,
+  "protein" : 0,
+  "fat" : 0
+},
+"milk":{
+  "serving" : 0,
+  "cal" : 0,
+  "protein" : 0,
+  "fat" : 0
+},
+"cucumber":{
+  "serving" : 0,
+  "cal" : 0,
+  "protein" : 0,
+  "fat" : 0
+},
+"broccoli":{
+  "serving" : 0,
+  "cal" : 0,
+  "protein" : 0,
+  "fat" : 0
+},
+"egg boiled":{
+  "serving" : 0,
+  "cal" : 0,
+  "protein" : 0,
+  "fat" : 0
+},
+"muffin":{
+  "serving" : 0,
+  "cal" : 0,
+  "protein" : 0,
+  "fat" : 0
+},
+"mango":{
+  "serving" : 0,
+  "cal" : 0,
+  "protein" : 0,
+  "fat" : 0
+},
+"shrimp":{
+  "serving" : 0,
+  "cal" : 0,
+  "protein" : 0,
+  "fat" : 0
+},
+"lettuce":{
+  "serving" : 0,
+  "cal" : 0,
+  "protein" : 0,
+  "fat" : 0
+},
+"egg fried":{
+  "serving" : 0,
+  "cal" : 0,
+  "protein" : 0,
+  "fat" : 0
+},
+"steak":{
+  "serving" : 0,
+  "cal" : 0,
+  "protein" : 0,
+  "fat" : 0
+},
+"grape":{
+  "serving" : 0,
+  "cal" : 0,
+  "protein" : 0,
+  "fat" : 0
+},
+"watermelon":{
+  "serving" : 0,
+  "cal" : 0,
+  "protein" : 0,
+  "fat" : 0
+},
+"french fries":{
+  "serving" : 117,
+  "cal" : 365,
+  "protein" : 4,
+  "fat" : 17
+},
+"nacho":{
+  "serving" : 0,
+  "cal" : 0,
+  "protein" : 0,
+  "fat" : 0
+},
+"macaroni":{
+  "serving" : 0,
+  "cal" : 0,
+  "protein" : 0,
+  "fat" : 0
+},
+"muffin english":{
+  "serving" : 0,
+  "cal" : 0,
+  "protein" : 0,
+  "fat" : 0
+},
+"dumpling":{
+  "serving" : 0,
+  "cal" : 0,
+  "protein" : 0,
+  "fat" : 0
+},
+"potato baked":{
+  "serving" : 0,
+  "cal" : 0,
+  "protein" : 0,
+  "fat" : 0
+},
+"chocolate":{
+  "serving" : 0,
+  "cal" : 0,
+  "protein" : 0,
+  "fat" : 0
+},
+"rice":{
+  "serving" : 0,
+  "cal" : 0,
+  "protein" : 0,
+  "fat" : 0
+},
+"chicken fried":{
+  "serving" : 0,
+  "cal" : 0,
+  "protein" : 0,
+  "fat" : 0
+},
+"taco":{
+  "serving" : 0,
+  "cal" : 0,
+  "protein" : 0,
+  "fat" : 0
+},
+"croissant":{
+  "serving" : 0,
+  "cal" : 0,
+  "protein" : 0,
+  "fat" : 0
+},
+"coffee":{
+  "serving" : 0,
+  "cal" : 0,
+  "protein" : 0,
+  "fat" : 0
+},
+"banana":{
+  "serving" : 0,
+  "cal" : 0,
+  "protein" : 0,
+  "fat" : 0
+},
+"icecream":{
+  "serving" : 0,
+  "cal" : 0,
+  "protein" : 0,
+  "fat" : 0
+},
+"potato mashed":{
+  "serving" : 0,
+  "cal" : 0,
+  "protein" : 0,
+  "fat" : 0
+},
+"chip":{
+  "serving" : 227,
+  "cal" : 1217,
+  "protein" : 16,
+  "fat" : 79
+}
+}

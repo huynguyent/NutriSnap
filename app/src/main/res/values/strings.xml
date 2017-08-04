@@ -2,7 +2,7 @@
     <string name="app_name">NutriSnap</string>
     <string name="app_title">NUTRI SNAP</string>
     <string name="app_subtitle">Food encyclepedia</string>
-    <string name="title_activity_result">ResultActivity</string>
+    <string name="title_activity_result">Results</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
@@ -92,6 +92,6 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
-    <string name="loading_text">Processing image</string>
+    <string name="loading_text">Processing results</string>
     <string name="food_image_description">Food Image</string>
 </resources>

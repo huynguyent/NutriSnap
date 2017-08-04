@@ -11,15 +11,18 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.util.Size;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.huyng.nutrisnap.classifier.Classifier;
+import com.example.huyng.nutrisnap.classifier.TensorFlowImageClassifier;
+
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
@@ -34,11 +37,10 @@ public class ResultActivity extends Activity {
     private static final String MODEL_FILE = "file:///android_asset/rounded_graph.pb";
     private static final String LABEL_FILE = "file:///android_asset/retrained_labels.txt";
 
-    private static final boolean SAVE_PREVIEW_BITMAP = false;
-
     private static final boolean MAINTAIN_ASPECT = true;
 
-    private static final Size DESIRED_PREVIEW_SIZE = new Size(640, 480);
+    RecyclerAdapter adapter;
+    ArrayList<FoodInfo> foodInfos;
 
 
     public Context getActivityContext() {
@@ -52,7 +54,6 @@ public class ResultActivity extends Activity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Display food image
-        ImageView foodImageView = (ImageView) findViewById(R.id.food_image);
         Bundle extras = getIntent().getExtras();
         Uri imageUri = null;
 
@@ -64,10 +65,8 @@ public class ResultActivity extends Activity {
                 imageUri = Uri.parse("file://" + extras.getString("capturedImage"));
 
             try {
-                // Display image
                 InputStream image_stream = getContentResolver().openInputStream(imageUri);
                 Bitmap bitmap= BitmapFactory.decodeStream(image_stream );
-                foodImageView.setImageBitmap(bitmap);
 
                 // Crop bitmap for TensorFlow Classifier
                 Bitmap croppedBitmap = Bitmap.createBitmap(INPUT_SIZE, INPUT_SIZE, Config.ARGB_8888);
@@ -80,6 +79,16 @@ public class ResultActivity extends Activity {
 
                 // Classify image in background
                 new ClassifyImageTask().execute(croppedBitmap);
+
+                // Set up RecyclerView to display results
+                RecyclerView rv = (RecyclerView)findViewById(R.id.rv);
+                LinearLayoutManager llm = new LinearLayoutManager(this);
+                rv.setLayoutManager(llm);
+
+                // Initialize RecyclerAdapter
+                foodInfos = new ArrayList<FoodInfo>();
+                adapter = new RecyclerAdapter(bitmap, true, foodInfos);
+                rv.setAdapter(adapter);
 
             } catch (Exception ex) {
                 Toast.makeText(this, "There was a problem", Toast.LENGTH_SHORT).show();
@@ -181,11 +190,17 @@ public class ResultActivity extends Activity {
 
         @Override
         protected void onPostExecute(List results) {
-            View loadingPanel = (View) findViewById(R.id.loading_panel);
+            // Hide loading panel
+            View loadingPanel = findViewById(R.id.loading_panel);
             loadingPanel.setVisibility(View.GONE);
-            TextView resultText = (TextView) findViewById(R.id.result_text);
-            resultText.setVisibility(View.VISIBLE);
-            Toast.makeText(getActivityContext(), results.get(0).toString(), Toast.LENGTH_SHORT).show();
+
+            // Display results
+            for (Object res: results) {
+                Classifier.Recognition recognition =(Classifier.Recognition)res;
+                foodInfos.add(new FoodInfo(recognition.getTitle(),0,0,0));
+            }
+
+            adapter.notifyDataSetChanged();
         }
     }
 
