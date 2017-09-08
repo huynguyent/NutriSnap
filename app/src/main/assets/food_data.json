@@ -1,246 +1,393 @@
 {"hamburger" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Hamburger",
+    "unit" : "burger",
+    "serving" : 120,
+    "calories" : 354,
+    "protein" : 20,
+    "fat" : 17
     },
 "strawberry" : {
-    "calories" : 0,
-    "protein" : 0,
+    "name" : "Strawberry",
+    "unit" : "strawberry",
+    "serving" : 12,
+    "calories" : 4,
+    "protein" : 0.1,
     "fat" : 0
     },
 "pancake" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Pancake",
+    "unit" : "pancake",
+    "serving" : 38,
+    "calories" : 83,
+    "protein" : 2.4,
+    "fat" : 3.7
     },
 "bread" : {
-    "calories" : 0,
+    "name" : "Bread",
+    "unit" : "",
+    "serving" : 100,
+    "calories" : 265,
     "protein" : 0,
     "fat" : 0
     },
 "hotdog" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Hotdog",
+    "unit" : "hotdog",
+    "serving" : 52,
+    "calories" : 151,
+    "protein" : 5,
+    "fat" : 13
     },
 "doughnut" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Doughnut",
+    "unit" : "doughnut",
+    "serving" : 43,
+    "calories" : 195,
+    "protein" : 2.1,
+    "fat" : 11
     },
 "spaghetti" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Spaghetti",
+    "unit" : "plate",
+    "serving" : 206,
+    "calories" : 180,
+    "protein" : 9,
+    "fat" : 5
     },
 "cracker" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Cracker",
+    "unit" : "cracker",
+    "serving" : 4,
+    "calories" : 20,
+    "protein" : 0.3,
+    "fat" : 1
     },
 "pizza" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Pizza",
+    "unit" : "slice",
+    "serving" : 107,
+    "calories" : 285,
+    "protein" : 12,
+    "fat" : 10
     },
 "milk" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Milk",
+    "unit" : "cup",
+    "serving" : 244,
+    "calories" : 103,
+    "protein" : 8,
+    "fat" : 2.4
     },
 "cucumber" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Cucumber",
+    "unit" : "cucumber",
+    "serving" : 301,
+    "calories" : 47,
+    "protein" : 2,
+    "fat" : 0.3
     },
 "lasagna" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Lasagna",
+    "unit" : "piece",
+    "serving" : 123,
+    "calories" : 166,
+    "protein" : 9,
+    "fat" : 6
     },
 "broccoli" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Broccoli",
+    "unit" : "",
+    "serving" : 100,
+    "calories" : 34,
+    "protein" : 2.8,
+    "fat" : 0.4
     },
 "egg boiled" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Boiled egg",
+    "unit" : "egg",
+    "serving" : 50,
+    "calories" : 78,
+    "protein" : 6,
+    "fat" : 5
     },
 "muffin" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Muffin",
+    "unit" : "muffin",
+    "serving" : 57,
+    "calories" : 168,
+    "protein" : 3.9,
+    "fat" : 6
     },
 "mango" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Mango",
+    "unit" : "mango",
+    "serving" : 336,
+    "calories" : 201,
+    "protein" : 2.8,
+    "fat" : 1.3
     },
 "shrimp" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Shrimp",
+    "unit" : "",
+    "serving" : 100,
+    "calories" : 99,
+    "protein" : 24,
+    "fat" : 0.3
     },
 "lettuce" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Lettuce",
+    "unit" : "",
+    "serving" : 100,
+    "calories" : 15,
+    "protein" : 1.4,
+    "fat" : 0.2
     },
 "avocado" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Avocado",
+    "unit" : "avocado",
+    "serving" : 201,
+    "calories" : 322,
+    "protein" : 4,
+    "fat" : 29
     },
 "egg fried" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Fried egg",
+    "unit" : "egg",
+    "serving" : 46,
+    "calories" : 90,
+    "protein" : 6,
+    "fat" : 7
     },
 "steak" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Steak",
+    "unit" : "steak",
+    "serving" : 251,
+    "calories" : 679,
+    "protein" : 62,
+    "fat" : 48
     },
 "burrito" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Burrito",
+    "unit" : "piece",
+    "serving" : 109,
+    "calories" : 224,
+    "protein" : 7,
+    "fat" : 6.5
     },
 "grape" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Grape",
+    "unit" : "",
+    "serving" : 100,
+    "calories" : 67,
+    "protein" : 0.6,
+    "fat" : 0.4
     },
 "watermelon" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Watermelon",
+    "unit" : "wedge",
+    "serving" : 286,
+    "calories" : 87,
+    "protein" : 1.7,
+    "fat" : 0.4
     },
 "french fries" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "French fries",
+    "unit" : "",
+    "serving" : 100,
+    "calories" : 312,
+    "protein" : 3.4,
+    "fat" : 15
     },
 "nacho" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Nacho",
+    "unit" : "portion",
+    "serving" : 113,
+    "calories" : 346,
+    "protein" : 9,
+    "fat" : 19
     },
 "macaroni" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Macaroni",
+    "unit" : "",
+    "serving" : 100,
+    "calories" : 371,
+    "protein" : 13,
+    "fat" : 1.5
     },
 "apple" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Apple",
+    "unit" : "apple",
+    "serving" : 182,
+    "calories" : 95,
+    "protein" : 0.5,
+    "fat" : 0.3
     },
 "muffin english" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "English muffin",
+    "unit" : "muffin",
+    "serving" : 57,
+    "calories" : 134,
+    "protein" : 4.4,
+    "fat" : 1
     },
 "dumpling" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Dumpling",
+    "unit" : "dumpling",
+    "serving" : 30,
+    "calories" : 41,
+    "protein" : 4.3,
+    "fat" : 1
     },
 "tomato" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Tomato",
+    "unit" : "tomato",
+    "serving" : 123,
+    "calories" : 22,
+    "protein" : 1.1,
+    "fat" : 0.2
     },
 "bacon" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Bacon",
+    "unit" : "slice",
+    "serving" : 8,
+    "calories" : 43,
+    "protein" : 3,
+    "fat" : 3.3
     },
 "potato baked" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Baked potato",
+    "unit" : "potato",
+    "serving" : 173,
+    "calories" : 161,
+    "protein" : 4.3,
+    "fat" : 0.2
     },
 "chocolate" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Chocolate",
+    "unit" : "",
+    "serving" : 100,
+    "calories" : 546,
+    "protein" : 4.9,
+    "fat" : 31
     },
 "rice" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Rice",
+    "unit" : "bowl",
+    "serving" : 158,
+    "calories" : 206,
+    "protein" : 4.3,
+    "fat" : 0.4
     },
 "popcorn" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Popcorn",
+    "unit" : "",
+    "serving" : 100,
+    "calories" : 375,
+    "protein" : 11,
+    "fat" : 4.3
     },
 "chicken fried" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Fried chicken",
+    "unit" : "",
+    "serving" : 100,
+    "calories" : 246,
+    "protein" : 30,
+    "fat" : 12
     },
 "taco" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Taco",
+    "unit" : "taco",
+    "serving" : 69,
+    "calories" : 156,
+    "protein" : 6,
+    "fat" : 9
     },
 "orange" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Orange",
+    "unit" : "orange",
+    "serving" : 131,
+    "calories" : 62,
+    "protein" : 1.2,
+    "fat" : 0.2
     },
 "chili" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Chili",
+    "unit" : "chili",
+    "serving" : 45,
+    "calories" : 18,
+    "protein" : 0.8,
+    "fat" : 0.2
     },
 "celery" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Celery",
+    "unit" : "",
+    "serving" : 100,
+    "calories" : 16,
+    "protein" : 0.7,
+    "fat" : 0.2
     },
 "croissant" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Croissant",
+    "unit" : "croissant",
+    "serving" : 57,
+    "calories" : 231,
+    "protein" : 4.7,
+    "fat" : 12
     },
 "peach" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Peach",
+    "unit" : "peach",
+    "serving" : 150,
+    "calories" : 59,
+    "protein" : 1.4,
+    "fat" : 0.4
     },
 "coffee" : {
-    "calories" : 0,
-    "protein" : 0,
+    "name" : "Coffee",
+    "unit" : "cup",
+    "serving" : 237,
+    "calories" : 1,
+    "protein" : 0.3,
     "fat" : 0
     },
 "banana" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Banana",
+    "unit" : "banana",
+    "serving" : 118,
+    "calories" : 1.5,
+    "protein" : 1.3,
+    "fat" : 0.4
     },
 "corn" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Corn",
+    "unit" : "",
+    "serving" : 100,
+    "calories" : 365,
+    "protein" : 9,
+    "fat" : 4.7
     },
 "icecream" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Ice cream",
+    "unit" : "",
+    "serving" : 100,
+    "calories" : 207,
+    "protein" : 3.5,
+    "fat" : 11
     },
 "potato mashed" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Mashed potato",
+    "unit" : "",
+    "serving" : 100,
+    "calories" : 88,
+    "protein" : 1.7,
+    "fat" : 2.8
     },
 "chip" : {
-    "calories" : 0,
-    "protein" : 0,
-    "fat" : 0
+    "name" : "Potato chip",
+    "unit" : "bag",
+    "serving" : 227,
+    "calories" : 1217,
+    "protein" : 16,
+    "fat" : 79
     }
 }
