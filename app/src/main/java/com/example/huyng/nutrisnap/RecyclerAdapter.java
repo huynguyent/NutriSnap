@@ -69,6 +69,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 vh.foodCal.setText("Calories: " + foodInfo.cal);
                 vh.foodProtein.setText("Protein: " + foodInfo.protein + " g");
                 vh.foodFat.setText("Fat: " + foodInfo.fat + " g");
+                String serving = "Serving: " + foodInfo.serving + " g";
+                if (!foodInfo.unit.equals(""))
+                    serving += " (per " + foodInfo.unit +")";
+                vh.foodServing.setText(serving);
+
             }
         } catch (Exception ex) {
             Log.e(TAG, ex.toString());
@@ -134,11 +139,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         TextView foodCal;
         TextView foodProtein;
         TextView foodFat;
+        TextView foodServing;
 
         FoodInfoHolder(View itemView) {
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.cv);
             foodName = (TextView)itemView.findViewById(R.id.food_name);
+            foodServing = (TextView)itemView.findViewById(R.id.food_serving);
             foodCal = (TextView)itemView.findViewById(R.id.food_cal);
             foodProtein = (TextView)itemView.findViewById(R.id.food_protein);
             foodFat = (TextView)itemView.findViewById(R.id.food_fat);

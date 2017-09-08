@@ -181,11 +181,13 @@ public class ResultActivity extends Activity {
 
     FoodInfo getFoodInfoFromName(String foodName) throws JSONException {
         JSONObject foodInfo = jsonReader.getJSONObject(foodName);
-        int serving = 0;
+        String name = foodInfo.getString("name");
+        int serving = foodInfo.getInt("serving");
         int cal = foodInfo.getInt("calories");
-        int protein = foodInfo.getInt("protein");
-        int fat = foodInfo.getInt("fat");
-        return new FoodInfo(foodName,serving,cal,protein,fat);
+        double protein = foodInfo.getDouble("protein");
+        double fat = foodInfo.getDouble("fat");
+        String unit = foodInfo.getString("unit");
+        return new FoodInfo(name,serving, unit, cal,protein,fat);
     }
 
     /*
