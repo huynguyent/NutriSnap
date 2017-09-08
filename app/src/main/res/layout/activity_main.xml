@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EAE3D5"
+    android:orientation="vertical"
     tools:context="com.example.huyng.nutrisnap.MainActivity">
 
     <FrameLayout
@@ -15,79 +16,54 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/title_textView"
+            android:orientation="vertical"
+            android:background="#EAE3D5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/media_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="70dp"
-                android:text="@string/app_title"
-                android:textStyle="bold"
-                android:textSize="40sp"
-                android:textColor="#282329"
-                android:textAlignment="center"/>
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:text="@string/app_subtitle"
-                android:textStyle=""
+                android:text="Open from gallery"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="100dp"
+                android:layout_marginBottom="20dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="#FFFFFF"
                 android:textSize="15sp"
-                android:textColor="#584D5A"
-                android:textAlignment="center"/>
+                android:drawableStart="@drawable/gallery"
+                android:background="@drawable/button"
+                android:onClick="galleryBtnOnClick"
+                />
+            <Button
+                android:id="@+id/camera_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Take a photo  "
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="5dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:drawableStart="@drawable/camera"
+                android:background="@drawable/button"
+                android:onClick="cameraBtnOnClick"
+                />
         </LinearLayout>
 
     </FrameLayout>
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="#EAE3D5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
 
-
-        <Button
-            android:id="@+id/media_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Open from gallery"
-            android:layout_marginLeft="5px"
-            android:layout_marginRight="5px"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:paddingLeft="30px"
-            android:paddingTop="20px"
-            android:paddingBottom="20px"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            android:drawableStart="@drawable/gallery"
-            android:background="@drawable/button"
-            android:onClick="galleryBtnOnClick"
-            />
-        <Button
-            android:id="@+id/camera_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Take a photo  "
-            android:layout_marginLeft="5px"
-            android:layout_marginRight="5px"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:paddingLeft="30px"
-            android:paddingTop="20px"
-            android:paddingBottom="20px"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            android:drawableStart="@drawable/camera"
-            android:background="@drawable/button"
-            android:onClick="cameraBtnOnClick"
-            />
-    </LinearLayout>
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
