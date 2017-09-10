@@ -1,6 +1,8 @@
 package com.example.huyng.nutrisnap;
 
+import android.app.Activity;
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -18,11 +20,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static final int HEADER_VIEW = 1;
     private static final int LOADING_VIEW = 2;
 
+    private static Activity context;
+    private AddFoodDialogFragment dialog;
     Bitmap headerBitmap;
     Boolean showLoading;
     List<FoodInfo> foodInfos;
 
-    RecyclerAdapter (Bitmap headerBitmap, Boolean showLoading, List<FoodInfo> foodInfos) {
+    RecyclerAdapter (Activity context, Bitmap headerBitmap, Boolean showLoading, List<FoodInfo> foodInfos) {
+        this.context = context;
         this.headerBitmap = headerBitmap;
         this.showLoading = showLoading;
         this.foodInfos = foodInfos;
@@ -64,7 +69,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
             else {
                 FoodInfoHolder vh = (FoodInfoHolder) holder;
-                FoodInfo foodInfo = foodInfos.get(i - 2);
+                final FoodInfo foodInfo = foodInfos.get(i - 2);
+
+                // Display food information
                 vh.foodName.setText(foodInfo.name);
                 vh.foodCal.setText("Calories: " + foodInfo.cal);
                 vh.foodProtein.setText("Protein: " + foodInfo.protein + " g");
@@ -73,6 +80,23 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 if (!foodInfo.unit.equals(""))
                     serving += " (per " + foodInfo.unit +")";
                 vh.foodServing.setText(serving);
+
+                // Set on click listener for add button
+                vh.addBtn.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v)
+                    {
+                        dialog = new AddFoodDialogFragment();
+                        Bundle args = new Bundle();
+                        args.putString("name", foodInfo.name);
+                        args.putString("unit", foodInfo.unit);
+                        args.putInt("serving", foodInfo.serving);
+                        args.putInt("cal", foodInfo.serving);
+                        args.putDouble("protein", foodInfo.protein);
+                        args.putDouble("fat", foodInfo.fat);
+                        dialog.setArguments(args);
+                        dialog.show(context.getFragmentManager(), "add_food");
+                    }
+                });
 
             }
         } catch (Exception ex) {
@@ -140,6 +164,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         TextView foodProtein;
         TextView foodFat;
         TextView foodServing;
+        ImageView addBtn;
 
         FoodInfoHolder(View itemView) {
             super(itemView);
@@ -149,6 +174,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             foodCal = (TextView)itemView.findViewById(R.id.food_cal);
             foodProtein = (TextView)itemView.findViewById(R.id.food_protein);
             foodFat = (TextView)itemView.findViewById(R.id.food_fat);
+            addBtn = (ImageView)itemView.findViewById(R.id.add_btn);
+
+
 
         }
     }

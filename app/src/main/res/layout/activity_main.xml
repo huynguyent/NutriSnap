@@ -12,7 +12,9 @@
         android:layout_width="fill_parent" android:layout_height="fill_parent">
         <ImageView
             android:layout_width="fill_parent" android:layout_height="fill_parent"
-            android:src="@drawable/bg_main" android:scaleType="fitEnd" />
+            android:src="@drawable/bg_main" android:scaleType="fitEnd"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,15 +32,14 @@
                 android:text="Open from gallery"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="150dp"
                 android:layout_marginBottom="20dp"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
                 android:textColor="#FFFFFF"
                 android:textSize="15sp"
-                android:drawableStart="@drawable/gallery"
+                android:drawableStart="@drawable/ic_photo_library"
+                android:drawableTint="#FFFFFF"
                 android:background="@drawable/button"
                 android:onClick="galleryBtnOnClick"
                 />
@@ -52,11 +53,10 @@
                 android:layout_marginBottom="5dp"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
                 android:textColor="#FFFFFF"
                 android:textSize="15sp"
-                android:drawableStart="@drawable/camera"
+                android:drawableStart="@drawable/ic_photo_camera"
+                android:drawableTint="#FFFFFF"
                 android:background="@drawable/button"
                 android:onClick="cameraBtnOnClick"
                 />

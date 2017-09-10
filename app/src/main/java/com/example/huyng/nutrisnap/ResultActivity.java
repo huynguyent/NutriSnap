@@ -1,6 +1,6 @@
 package com.example.huyng.nutrisnap;
 
-import android.app.Activity;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -30,7 +31,8 @@ import java.util.List;
 
 import static android.content.ContentValues.TAG;
 
-public class ResultActivity extends Activity {
+public class ResultActivity extends AppCompatActivity
+        implements AddFoodDialogFragment.DialogListener{
     private static final int INPUT_SIZE = 299;
     private static final int IMAGE_MEAN = 128;
     private static final float IMAGE_STD = 128.0f;
@@ -56,7 +58,7 @@ public class ResultActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Display food image
         Bundle extras = getIntent().getExtras();
@@ -92,7 +94,7 @@ public class ResultActivity extends Activity {
 
                 // Initialize RecyclerAdapter
                 foodInfos = new ArrayList<FoodInfo>();
-                adapter = new RecyclerAdapter(bitmap, true, foodInfos);
+                adapter = new RecyclerAdapter(this, bitmap, true, foodInfos);
                 rv.setAdapter(adapter);
 
                 // Initialize json reader to parse food data
@@ -111,6 +113,16 @@ public class ResultActivity extends Activity {
 
         }
 
+    }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        Toast.makeText(this, "Food added to diary", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog) {
+        // User touched the dialog's negative button
     }
 
 
