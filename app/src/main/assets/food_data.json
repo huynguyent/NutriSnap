@@ -4,7 +4,8 @@
     "serving" : 120,
     "calories" : 354,
     "protein" : 20,
-    "fat" : 17
+    "fat" : 17,
+    "carb" : 0
     },
 "strawberry" : {
     "name" : "Strawberry",
@@ -12,7 +13,8 @@
     "serving" : 12,
     "calories" : 4,
     "protein" : 0.1,
-    "fat" : 0
+    "fat" : 0,
+    "carb" : 0
     },
 "pancake" : {
     "name" : "Pancake",
@@ -20,7 +22,8 @@
     "serving" : 38,
     "calories" : 83,
     "protein" : 2.4,
-    "fat" : 3.7
+    "fat" : 3.7,
+    "carb" : 0
     },
 "bread" : {
     "name" : "Bread",
@@ -28,7 +31,8 @@
     "serving" : 100,
     "calories" : 265,
     "protein" : 0,
-    "fat" : 0
+    "fat" : 0,
+    "carb" : 0
     },
 "hotdog" : {
     "name" : "Hotdog",
@@ -36,7 +40,8 @@
     "serving" : 52,
     "calories" : 151,
     "protein" : 5,
-    "fat" : 13
+    "fat" : 13,
+    "carb" : 0
     },
 "doughnut" : {
     "name" : "Doughnut",
@@ -44,7 +49,8 @@
     "serving" : 43,
     "calories" : 195,
     "protein" : 2.1,
-    "fat" : 11
+    "fat" : 11,
+    "carb" : 0
     },
 "spaghetti" : {
     "name" : "Spaghetti",
@@ -52,7 +58,8 @@
     "serving" : 206,
     "calories" : 180,
     "protein" : 9,
-    "fat" : 5
+    "fat" : 5,
+    "carb" : 0
     },
 "cracker" : {
     "name" : "Cracker",
@@ -60,7 +67,8 @@
     "serving" : 4,
     "calories" : 20,
     "protein" : 0.3,
-    "fat" : 1
+    "fat" : 1,
+    "carb" : 0
     },
 "pizza" : {
     "name" : "Pizza",
@@ -68,7 +76,8 @@
     "serving" : 107,
     "calories" : 285,
     "protein" : 12,
-    "fat" : 10
+    "fat" : 10,
+    "carb" : 0
     },
 "milk" : {
     "name" : "Milk",
@@ -76,7 +85,8 @@
     "serving" : 244,
     "calories" : 103,
     "protein" : 8,
-    "fat" : 2.4
+    "fat" : 2.4,
+    "carb" : 0
     },
 "cucumber" : {
     "name" : "Cucumber",
@@ -84,7 +94,8 @@
     "serving" : 301,
     "calories" : 47,
     "protein" : 2,
-    "fat" : 0.3
+    "fat" : 0.3,
+    "carb" : 0
     },
 "lasagna" : {
     "name" : "Lasagna",
@@ -92,7 +103,8 @@
     "serving" : 123,
     "calories" : 166,
     "protein" : 9,
-    "fat" : 6
+    "fat" : 6,
+    "carb" : 0
     },
 "broccoli" : {
     "name" : "Broccoli",
@@ -100,7 +112,8 @@
     "serving" : 100,
     "calories" : 34,
     "protein" : 2.8,
-    "fat" : 0.4
+    "fat" : 0.4,
+    "carb" : 0
     },
 "egg boiled" : {
     "name" : "Boiled egg",
@@ -108,7 +121,8 @@
     "serving" : 50,
     "calories" : 78,
     "protein" : 6,
-    "fat" : 5
+    "fat" : 5,
+    "carb" : 0
     },
 "muffin" : {
     "name" : "Muffin",
@@ -116,7 +130,8 @@
     "serving" : 57,
     "calories" : 168,
     "protein" : 3.9,
-    "fat" : 6
+    "fat" : 6,
+    "carb" : 0
     },
 "mango" : {
     "name" : "Mango",
@@ -124,7 +139,8 @@
     "serving" : 336,
     "calories" : 201,
     "protein" : 2.8,
-    "fat" : 1.3
+    "fat" : 1.3,
+    "carb" : 0
     },
 "shrimp" : {
     "name" : "Shrimp",
@@ -132,7 +148,8 @@
     "serving" : 100,
     "calories" : 99,
     "protein" : 24,
-    "fat" : 0.3
+    "fat" : 0.3,
+    "carb" : 0
     },
 "lettuce" : {
     "name" : "Lettuce",
@@ -140,7 +157,8 @@
     "serving" : 100,
     "calories" : 15,
     "protein" : 1.4,
-    "fat" : 0.2
+    "fat" : 0.2,
+    "carb" : 0
     },
 "avocado" : {
     "name" : "Avocado",
@@ -148,7 +166,8 @@
     "serving" : 201,
     "calories" : 322,
     "protein" : 4,
-    "fat" : 29
+    "fat" : 29,
+    "carb" : 0
     },
 "egg fried" : {
     "name" : "Fried egg",
@@ -156,7 +175,8 @@
     "serving" : 46,
     "calories" : 90,
     "protein" : 6,
-    "fat" : 7
+    "fat" : 7,
+    "carb" : 0
     },
 "steak" : {
     "name" : "Steak",
@@ -164,7 +184,8 @@
     "serving" : 251,
     "calories" : 679,
     "protein" : 62,
-    "fat" : 48
+    "fat" : 48,
+    "carb" : 0
     },
 "burrito" : {
     "name" : "Burrito",
@@ -172,7 +193,8 @@
     "serving" : 109,
     "calories" : 224,
     "protein" : 7,
-    "fat" : 6.5
+    "fat" : 6.5,
+    "carb" : 0
     },
 "grape" : {
     "name" : "Grape",
@@ -180,7 +202,8 @@
     "serving" : 100,
     "calories" : 67,
     "protein" : 0.6,
-    "fat" : 0.4
+    "fat" : 0.4,
+    "carb" : 0
     },
 "watermelon" : {
     "name" : "Watermelon",
@@ -188,7 +211,8 @@
     "serving" : 286,
     "calories" : 87,
     "protein" : 1.7,
-    "fat" : 0.4
+    "fat" : 0.4,
+    "carb" : 0
     },
 "french fries" : {
     "name" : "French fries",
@@ -196,7 +220,8 @@
     "serving" : 100,
     "calories" : 312,
     "protein" : 3.4,
-    "fat" : 15
+    "fat" : 15,
+    "carb" : 0
     },
 "nacho" : {
     "name" : "Nacho",
@@ -204,7 +229,8 @@
     "serving" : 113,
     "calories" : 346,
     "protein" : 9,
-    "fat" : 19
+    "fat" : 19,
+    "carb" : 0
     },
 "macaroni" : {
     "name" : "Macaroni",
@@ -212,7 +238,8 @@
     "serving" : 100,
     "calories" : 371,
     "protein" : 13,
-    "fat" : 1.5
+    "fat" : 1.5,
+    "carb" : 0
     },
 "apple" : {
     "name" : "Apple",
@@ -220,7 +247,8 @@
     "serving" : 182,
     "calories" : 95,
     "protein" : 0.5,
-    "fat" : 0.3
+    "fat" : 0.3,
+    "carb" : 0
     },
 "muffin english" : {
     "name" : "English muffin",
@@ -228,7 +256,8 @@
     "serving" : 57,
     "calories" : 134,
     "protein" : 4.4,
-    "fat" : 1
+    "fat" : 1,
+    "carb" : 0
     },
 "dumpling" : {
     "name" : "Dumpling",
@@ -236,7 +265,8 @@
     "serving" : 30,
     "calories" : 41,
     "protein" : 4.3,
-    "fat" : 1
+    "fat" : 1,
+    "carb" : 0
     },
 "tomato" : {
     "name" : "Tomato",
@@ -244,7 +274,8 @@
     "serving" : 123,
     "calories" : 22,
     "protein" : 1.1,
-    "fat" : 0.2
+    "fat" : 0.2,
+    "carb" : 0
     },
 "bacon" : {
     "name" : "Bacon",
@@ -252,7 +283,8 @@
     "serving" : 8,
     "calories" : 43,
     "protein" : 3,
-    "fat" : 3.3
+    "fat" : 3.3,
+    "carb" : 0
     },
 "potato baked" : {
     "name" : "Baked potato",
@@ -260,7 +292,8 @@
     "serving" : 173,
     "calories" : 161,
     "protein" : 4.3,
-    "fat" : 0.2
+    "fat" : 0.2,
+    "carb" : 0
     },
 "chocolate" : {
     "name" : "Chocolate",
@@ -268,7 +301,8 @@
     "serving" : 100,
     "calories" : 546,
     "protein" : 4.9,
-    "fat" : 31
+    "fat" : 31,
+    "carb" : 0
     },
 "rice" : {
     "name" : "Rice",
@@ -276,7 +310,8 @@
     "serving" : 158,
     "calories" : 206,
     "protein" : 4.3,
-    "fat" : 0.4
+    "fat" : 0.4,
+    "carb" : 0
     },
 "popcorn" : {
     "name" : "Popcorn",
@@ -284,7 +319,8 @@
     "serving" : 100,
     "calories" : 375,
     "protein" : 11,
-    "fat" : 4.3
+    "fat" : 4.3,
+    "carb" : 0
     },
 "chicken fried" : {
     "name" : "Fried chicken",
@@ -292,7 +328,8 @@
     "serving" : 100,
     "calories" : 246,
     "protein" : 30,
-    "fat" : 12
+    "fat" : 12,
+    "carb" : 0
     },
 "taco" : {
     "name" : "Taco",
@@ -300,7 +337,8 @@
     "serving" : 69,
     "calories" : 156,
     "protein" : 6,
-    "fat" : 9
+    "fat" : 9,
+    "carb" : 0
     },
 "orange" : {
     "name" : "Orange",
@@ -308,7 +346,8 @@
     "serving" : 131,
     "calories" : 62,
     "protein" : 1.2,
-    "fat" : 0.2
+    "fat" : 0.2,
+    "carb" : 0
     },
 "chili" : {
     "name" : "Chili",
@@ -316,7 +355,8 @@
     "serving" : 45,
     "calories" : 18,
     "protein" : 0.8,
-    "fat" : 0.2
+    "fat" : 0.2,
+    "carb" : 0
     },
 "celery" : {
     "name" : "Celery",
@@ -324,7 +364,8 @@
     "serving" : 100,
     "calories" : 16,
     "protein" : 0.7,
-    "fat" : 0.2
+    "fat" : 0.2,
+    "carb" : 0
     },
 "croissant" : {
     "name" : "Croissant",
@@ -332,7 +373,8 @@
     "serving" : 57,
     "calories" : 231,
     "protein" : 4.7,
-    "fat" : 12
+    "fat" : 12,
+    "carb" : 0
     },
 "peach" : {
     "name" : "Peach",
@@ -340,7 +382,8 @@
     "serving" : 150,
     "calories" : 59,
     "protein" : 1.4,
-    "fat" : 0.4
+    "fat" : 0.4,
+    "carb" : 0
     },
 "coffee" : {
     "name" : "Coffee",
@@ -348,7 +391,8 @@
     "serving" : 237,
     "calories" : 1,
     "protein" : 0.3,
-    "fat" : 0
+    "fat" : 0,
+    "carb" : 0
     },
 "banana" : {
     "name" : "Banana",
@@ -356,7 +400,8 @@
     "serving" : 118,
     "calories" : 1.5,
     "protein" : 1.3,
-    "fat" : 0.4
+    "fat" : 0.4,
+    "carb" : 0
     },
 "corn" : {
     "name" : "Corn",
@@ -364,7 +409,8 @@
     "serving" : 100,
     "calories" : 365,
     "protein" : 9,
-    "fat" : 4.7
+    "fat" : 4.7,
+    "carb" : 0
     },
 "icecream" : {
     "name" : "Ice cream",
@@ -372,7 +418,8 @@
     "serving" : 100,
     "calories" : 207,
     "protein" : 3.5,
-    "fat" : 11
+    "fat" : 11,
+    "carb" : 0
     },
 "potato mashed" : {
     "name" : "Mashed potato",
@@ -380,7 +427,8 @@
     "serving" : 100,
     "calories" : 88,
     "protein" : 1.7,
-    "fat" : 2.8
+    "fat" : 2.8,
+    "carb" : 0
     },
 "chip" : {
     "name" : "Potato chip",
@@ -388,6 +436,7 @@
     "serving" : 227,
     "calories" : 1217,
     "protein" : 16,
-    "fat" : 79
+    "fat" : 79,
+    "carb" : 0
     }
 }
