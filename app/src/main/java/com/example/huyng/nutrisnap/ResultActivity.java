@@ -1,7 +1,7 @@
 package com.example.huyng.nutrisnap;
 
-import android.app.DialogFragment;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
@@ -21,12 +21,20 @@ import android.widget.Toast;
 
 import com.example.huyng.nutrisnap.classifier.Classifier;
 import com.example.huyng.nutrisnap.classifier.TensorFlowImageClassifier;
+import com.example.huyng.nutrisnap.database.Entry;
+import com.example.huyng.nutrisnap.database.EntryRepository;
+import com.example.huyng.nutrisnap.database.Food;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
@@ -45,10 +53,14 @@ public class ResultActivity extends AppCompatActivity
 
     private static final boolean MAINTAIN_ASPECT = true;
 
+    private Bitmap bitmap;
+
     RecyclerAdapter adapter;
-    ArrayList<FoodInfo> foodInfos;
+    ArrayList<Food> foodInfos;
 
     JSONObject jsonReader;
+    private EntryRepository entryRepository;
+    private String imageName = null;
 
     public Context getActivityContext() {
         return this;
@@ -73,7 +85,7 @@ public class ResultActivity extends AppCompatActivity
 
             try {
                 InputStream image_stream = getContentResolver().openInputStream(imageUri);
-                Bitmap bitmap= BitmapFactory.decodeStream(image_stream );
+                bitmap= BitmapFactory.decodeStream(image_stream );
 
                 // Crop bitmap for TensorFlow Classifier
                 Bitmap croppedBitmap = Bitmap.createBitmap(INPUT_SIZE, INPUT_SIZE, Config.ARGB_8888);
@@ -93,7 +105,7 @@ public class ResultActivity extends AppCompatActivity
                 rv.setLayoutManager(llm);
 
                 // Initialize RecyclerAdapter
-                foodInfos = new ArrayList<FoodInfo>();
+                foodInfos = new ArrayList<Food>();
                 adapter = new RecyclerAdapter(this, bitmap, true, foodInfos);
                 rv.setAdapter(adapter);
 
@@ -106,6 +118,9 @@ public class ResultActivity extends AppCompatActivity
                 String jsonString = new String(buffer, "UTF-8");
                 jsonReader = new JSONObject(jsonString);
 
+                // Initialize database
+                entryRepository = new EntryRepository(this);
+
             } catch (Exception ex) {
                 Toast.makeText(this, "There was a problem", Toast.LENGTH_SHORT).show();
                 Log.e(TAG, ex.toString());
@@ -116,12 +131,23 @@ public class ResultActivity extends AppCompatActivity
     }
 
     @Override
-    public void onDialogPositiveClick(DialogFragment dialog) {
-        Toast.makeText(this, "Food added to diary", Toast.LENGTH_SHORT).show();
+    public void onDialogPositiveClick(AddFoodDialogFragment dialog) {
+        SimpleDateFormat df = new SimpleDateFormat("YYYY-MM-DD HH:MM:SS.SSS");
+        String time = df.format(Calendar.getInstance().getTime());
+        // Save image to storage
+        if (imageName == null) {
+            imageName = time + ".jpg";
+            imageName = saveBitmap(bitmap, imageName);
+        }
+        // Add entry to database
+        Entry entry = new Entry(dialog.getCode(), time, dialog.getAmount(), imageName);
+        entryRepository.addEntry(entry);
+        Toast.makeText(this, "Added to diary", Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
-    public void onDialogNegativeClick(DialogFragment dialog) {
+    public void onDialogNegativeClick(AddFoodDialogFragment dialog) {
         // User touched the dialog's negative button
     }
 
@@ -138,11 +164,31 @@ public class ResultActivity extends AppCompatActivity
     }
 
 
+    /* Save bitmapp to internal storage and return image name */
+    private String saveBitmap(Bitmap bitmap, String imageName) {
+        ContextWrapper cw = new ContextWrapper(this);
+        File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
+        File file = new File(directory, imageName);
+        if (!file.exists()) {
+            try {
+                OutputStream outStream = new FileOutputStream(file);
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, outStream);
+                outStream.flush();
+                outStream.close();
 
-    /*
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        Log.d(TAG, "Saved " + imageName);
+        return imageName;
+    }
+
+
+    /**********************************************************************
      * Calculate transformation matrix so that an image can be
      * cropped and used by TensorFlow Classifier
-     */
+     **********************************************************************/
     private Matrix getTransformationMatrix(
             final int srcWidth,
             final int srcHeight,
@@ -191,20 +237,11 @@ public class ResultActivity extends AppCompatActivity
         return matrix;
     }
 
-    FoodInfo getFoodInfoFromName(String foodName) throws JSONException {
-        JSONObject foodInfo = jsonReader.getJSONObject(foodName);
-        String name = foodInfo.getString("name");
-        int serving = foodInfo.getInt("serving");
-        int cal = foodInfo.getInt("calories");
-        double protein = foodInfo.getDouble("protein");
-        double fat = foodInfo.getDouble("fat");
-        String unit = foodInfo.getString("unit");
-        return new FoodInfo(name,serving, unit, cal,protein,fat);
-    }
 
-    /*
+
+    /*****************************************************************
      * AsyncTask: Classify image in background
-     */
+     *****************************************************************/
     private class ClassifyImageTask extends AsyncTask<Bitmap, Void, List> {
         @Override
         protected List doInBackground(Bitmap... bitmap) {
@@ -243,6 +280,18 @@ public class ResultActivity extends AppCompatActivity
             }
 
             adapter.notifyDataSetChanged();
+        }
+
+        Food getFoodInfoFromName(String foodName) throws JSONException {
+            JSONObject foodInfo = jsonReader.getJSONObject(foodName);
+            String name = foodInfo.getString("name");
+            int serving = foodInfo.getInt("serving");
+            int cal = foodInfo.getInt("calories");
+            double protein = foodInfo.getDouble("protein");
+            double fat = foodInfo.getDouble("fat");
+            double carb = foodInfo.getDouble("carb");
+            String unit = foodInfo.getString("unit");
+            return new Food(foodName, name, unit, serving, cal, protein, fat, carb);
         }
     }
 

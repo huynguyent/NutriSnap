@@ -26,8 +26,12 @@ public class AddFoodDialogFragment extends DialogFragment {
     private Button minusBtn;
     private TextView weightTxt;
     private TextView calTxt;
+    private TextView carbTxt;
     private TextView proteinTxt;
     private TextView fatTxt;
+    private int amount;
+    private String code;
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
@@ -39,6 +43,8 @@ public class AddFoodDialogFragment extends DialogFragment {
                 .setView(addFoodView)
                 .setPositiveButton("Add", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        amount = Integer.parseInt(amountTxt.getText().toString());
+                        code = args.getString("code");
                         mListener.onDialogPositiveClick(AddFoodDialogFragment.this);
                     }
                 })
@@ -53,6 +59,7 @@ public class AddFoodDialogFragment extends DialogFragment {
         minusBtn = (Button) addFoodView.findViewById(R.id.minus_btn);
         weightTxt = (TextView) addFoodView.findViewById(R.id.weight);
         calTxt = (TextView) addFoodView.findViewById(R.id.cal);
+        carbTxt = (TextView) addFoodView.findViewById(R.id.carb);
         proteinTxt = (TextView) addFoodView.findViewById(R.id.protein);
         fatTxt = (TextView) addFoodView.findViewById(fat);
 
@@ -128,8 +135,15 @@ public class AddFoodDialogFragment extends DialogFragment {
     }
 
     public interface DialogListener {
-        public void onDialogPositiveClick(DialogFragment dialog);
-        public void onDialogNegativeClick(DialogFragment dialog);
+        public void onDialogPositiveClick(AddFoodDialogFragment dialog);
+        public void onDialogNegativeClick(AddFoodDialogFragment dialog);
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
+    public String getCode() {
+        return code;
+    }
 }

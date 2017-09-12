@@ -20,8 +20,9 @@
 
         <EditText
             android:id="@+id/amount"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:inputType="number"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
@@ -29,23 +30,29 @@
             android:layout_marginEnd="15dp"
             android:text="1"/>
         <Button
-            android:id="@+id/add_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minHeight="0dp"
-            android:minWidth="0dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginEnd="2dp"
-            android:text="+"/>
-        <Button
             android:id="@+id/minus_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minHeight="0dp"
             android:minWidth="0dp"
+            android:textSize="20sp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
             android:layout_marginStart="2dp"
             android:layout_marginEnd="2dp"
             android:text="−"/>
+        <Button
+            android:id="@+id/add_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:textSize="20sp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:text="+"/>
     </LinearLayout>
     <TextView
         android:id="@+id/weight"
@@ -55,6 +62,12 @@
         android:textColor="@color/black"/>
     <TextView
         android:id="@+id/cal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"/>
+    <TextView
+        android:id="@+id/carb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

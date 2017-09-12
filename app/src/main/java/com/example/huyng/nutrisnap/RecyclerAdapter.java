@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.huyng.nutrisnap.database.Food;
+
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
@@ -24,9 +26,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private AddFoodDialogFragment dialog;
     Bitmap headerBitmap;
     Boolean showLoading;
-    List<FoodInfo> foodInfos;
+    List<Food> foodInfos;
 
-    RecyclerAdapter (Activity context, Bitmap headerBitmap, Boolean showLoading, List<FoodInfo> foodInfos) {
+    RecyclerAdapter (Activity context, Bitmap headerBitmap, Boolean showLoading, List<Food> foodInfos) {
         this.context = context;
         this.headerBitmap = headerBitmap;
         this.showLoading = showLoading;
@@ -69,16 +71,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
             else {
                 FoodInfoHolder vh = (FoodInfoHolder) holder;
-                final FoodInfo foodInfo = foodInfos.get(i - 2);
+                final Food foodInfo = foodInfos.get(i - 2);
 
                 // Display food information
-                vh.foodName.setText(foodInfo.name);
-                vh.foodCal.setText("Calories: " + foodInfo.cal);
-                vh.foodProtein.setText("Protein: " + foodInfo.protein + " g");
-                vh.foodFat.setText("Fat: " + foodInfo.fat + " g");
-                String serving = "Serving: " + foodInfo.serving + " g";
-                if (!foodInfo.unit.equals(""))
-                    serving += " (per " + foodInfo.unit +")";
+                vh.foodName.setText(foodInfo.getName());
+                vh.foodCal.setText("Calories: " + foodInfo.getCalories());
+                vh.foodCarb.setText("Carb: " + foodInfo.getCarb() + " g");
+                vh.foodProtein.setText("Protein: " + foodInfo.getProtein() + " g");
+                vh.foodFat.setText("Fat: " + foodInfo.getFat() + " g");
+                String serving = "Serving: " + foodInfo.getServing() + " g";
+                if (!foodInfo.getUnit().equals(""))
+                    serving += " (per " + foodInfo.getUnit() +")";
                 vh.foodServing.setText(serving);
 
                 // Set on click listener for add button
@@ -87,12 +90,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     {
                         dialog = new AddFoodDialogFragment();
                         Bundle args = new Bundle();
-                        args.putString("name", foodInfo.name);
-                        args.putString("unit", foodInfo.unit);
-                        args.putInt("serving", foodInfo.serving);
-                        args.putInt("cal", foodInfo.serving);
-                        args.putDouble("protein", foodInfo.protein);
-                        args.putDouble("fat", foodInfo.fat);
+                        args.putString("code", foodInfo.getFoodCode());
+                        args.putString("name", foodInfo.getName());
+                        args.putString("unit", foodInfo.getUnit());
+                        args.putInt("serving", foodInfo.getServing());
+                        args.putInt("cal", foodInfo.getCalories());
+                        args.putDouble("carb", foodInfo.getCarb());
+                        args.putDouble("protein", foodInfo.getProtein());
+                        args.putDouble("fat", foodInfo.getFat());
                         dialog.setArguments(args);
                         dialog.show(context.getFragmentManager(), "add_food");
                     }
@@ -161,6 +166,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         CardView cv;
         TextView foodName;
         TextView foodCal;
+        TextView foodCarb;
         TextView foodProtein;
         TextView foodFat;
         TextView foodServing;
@@ -172,6 +178,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             foodName = (TextView)itemView.findViewById(R.id.food_name);
             foodServing = (TextView)itemView.findViewById(R.id.food_serving);
             foodCal = (TextView)itemView.findViewById(R.id.food_cal);
+            foodCarb = (TextView)itemView.findViewById(R.id.food_carb);
             foodProtein = (TextView)itemView.findViewById(R.id.food_protein);
             foodFat = (TextView)itemView.findViewById(R.id.food_fat);
             addBtn = (ImageView)itemView.findViewById(R.id.add_btn);
