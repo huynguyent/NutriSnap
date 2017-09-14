@@ -2,9 +2,13 @@ package com.example.huyng.nutrisnap.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EntryRepository {
     private DatabaseHelper mDbHelper;
@@ -13,7 +17,8 @@ public class EntryRepository {
 
     public EntryRepository(Context context) {
         mDbHelper = new DatabaseHelper(context);
-        new GetDatabaseTask().execute();
+        writeableDatabase = mDbHelper.getWritableDatabase();
+        readableDatabase = mDbHelper.getReadableDatabase();
     }
 
     public void addEntry(Entry entry) {
@@ -23,6 +28,27 @@ public class EntryRepository {
         values.put(Entry.COLUMN_AMOUNT, entry.getAmount());
         values.put(Entry.COLUMN_IMAGE, entry.getImage());
         writeableDatabase.insert(Entry.TABLE_NAME, null, values);
+    }
+
+    public List<Entry> getAllEntry() {
+        ArrayList<Entry> entryList = new ArrayList<Entry>();
+        String[] projection = {
+                Entry.COLUMN_FOOD_CODE,
+                Entry.COLUMN_TIME,
+                Entry.COLUMN_AMOUNT,
+                Entry.COLUMN_IMAGE
+        };
+        Cursor cursor = readableDatabase.query(Entry.TABLE_NAME, projection, null, null, null, null, null);
+        while(cursor.moveToNext()) {
+            String name = cursor.getString(cursor.getColumnIndexOrThrow(Entry.COLUMN_FOOD_CODE));
+            String time = cursor.getString(cursor.getColumnIndexOrThrow(Entry.COLUMN_TIME));
+            String image = cursor.getString(cursor.getColumnIndexOrThrow(Entry.COLUMN_IMAGE));
+            int amount = cursor.getInt(cursor.getColumnIndexOrThrow(Entry.COLUMN_AMOUNT));
+            entryList.add(new Entry(name, time, amount, image));
+        }
+        cursor.close();
+
+        return entryList;
     }
 
     private class GetDatabaseTask extends AsyncTask<Void, Void, Void> {

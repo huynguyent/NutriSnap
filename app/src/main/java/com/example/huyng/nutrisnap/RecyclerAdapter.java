@@ -182,9 +182,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             foodProtein = (TextView)itemView.findViewById(R.id.food_protein);
             foodFat = (TextView)itemView.findViewById(R.id.food_fat);
             addBtn = (ImageView)itemView.findViewById(R.id.add_btn);
-
-
-
         }
     }
 

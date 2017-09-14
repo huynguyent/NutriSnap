@@ -49,6 +49,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 ContentValues values = new ContentValues();
                 values.put(Food.COLUMN_FOOD_CODE, key);
                 values.put(Food.COLUMN_FOOD_NAME, food.getString("name"));
+                values.put(Food.COLUMN_UNIT, food.getString("unit"));
                 values.put(Food.COLUMN_CALORIES, food.getInt("calories"));
                 values.put(Food.COLUMN_PROTEIN, food.getDouble("protein"));
                 values.put(Food.COLUMN_FAT, food.getDouble("fat"));
