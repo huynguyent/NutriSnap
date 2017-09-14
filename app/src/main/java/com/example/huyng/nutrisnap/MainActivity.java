@@ -9,6 +9,7 @@ import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.view.View;
 import android.widget.Toast;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -49,6 +50,12 @@ public class MainActivity extends Activity {
                     break;
             }
         }
+    }
+
+    // Dispatch gallery intent
+    public void progressBtnOnClick(View v) {
+        Intent intent = new Intent(this, DiaryActivity.class);
+        startActivity(intent);
     }
 
     // Dispatch gallery intent
