@@ -8,4 +8,5 @@
     <string name="title_activity_diary">Diary</string>
     <string name="title_diary">Diary</string>
     <string name="title_progress">Progress</string>
+    <string name="date_select">Today &#9660; </string>
 </resources>

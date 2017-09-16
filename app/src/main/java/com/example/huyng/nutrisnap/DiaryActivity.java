@@ -32,7 +32,6 @@ public class DiaryActivity extends AppCompatActivity {
                     setSupportActionBar(diaryFragment.getToolbar());
                     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                     getSupportActionBar().setDisplayShowHomeEnabled(true);
-                    setTitle("Diary");
                     return true;
                 case R.id.navigation_progress:
                     selectedFragment = PROGRESS_SELECTED;
@@ -69,12 +68,21 @@ public class DiaryActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (selectedFragment == DIARY_SELECTED)
+        if (selectedFragment == DIARY_SELECTED) {
             setSupportActionBar(diaryFragment.getToolbar());
+        }
         else
             //setSupportActionBar(progressFragment.getToolbar());
             System.out.println();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        setTitle(" ");
+
+    }
+    public void toggleCalendar(View view) {
+        if (selectedFragment == DIARY_SELECTED) {
+            diaryFragment.toggleCalendar(view);
+        }
+
     }
 }
