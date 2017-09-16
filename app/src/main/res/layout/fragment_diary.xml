@@ -52,7 +52,15 @@
                     android:background="@android:color/transparent"
                     android:shadowColor="@color/colorPrimary"
                     android:text="@string/date_select"
-                    android:onClick="toggleCalendar"/>
+                    android:textColor="@color/black"
+                    android:onClick="toggleCalendar"
+                    />
+                <ImageView
+                    android:id="@+id/arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_arrow_drop_down"
+                    android:text="@string/date_select"/>
             </android.support.v7.widget.Toolbar>
 
 

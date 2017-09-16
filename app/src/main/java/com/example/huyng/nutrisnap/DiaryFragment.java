@@ -5,14 +5,15 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
+import android.widget.ImageView;
 
 import com.example.huyng.nutrisnap.database.Entry;
 import com.example.huyng.nutrisnap.database.EntryRepository;
@@ -87,7 +88,13 @@ public class DiaryFragment extends Fragment {
     public void toggleCalendar(View view) {
         AppBarLayout appBar = (AppBarLayout) getView().findViewById(R.id.app_bar);
         RecyclerView rv = (RecyclerView) getView().findViewById(R.id.rv);
+        ImageView arrow = (ImageView) getView().findViewById(R.id.arrow);
         expanded = !expanded;
         appBar.setExpanded(expanded,true);
+        if (expanded) {
+            ViewCompat.animate(arrow).rotation(180).start();
+        } else {
+            ViewCompat.animate(arrow).rotation(0).start();
+        }
     }
 }
