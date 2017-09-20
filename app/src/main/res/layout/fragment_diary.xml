@@ -46,21 +46,26 @@
                 android:minHeight="?attr/actionBarSize"
                 android:background="@color/colorPrimary"
                 app:layout_collapseMode="pin">
-                <Button
+                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:textSize="20sp"
                     android:background="@android:color/transparent"
                     android:shadowColor="@color/colorPrimary"
                     android:text="@string/date_select"
                     android:textColor="@color/black"
                     android:onClick="toggleCalendar"
+                    android:paddingEnd="10dp"
                     />
                 <ImageView
                     android:id="@+id/arrow"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ic_arrow_drop_down"
-                    android:text="@string/date_select"/>
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_arrow_drop_down"
+                    android:text="@string/date_select"
+                    android:onClick="toggleCalendar"
+                    />
             </android.support.v7.widget.Toolbar>
 
 
@@ -71,7 +76,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:nestedScrollingEnabled="false"
         >

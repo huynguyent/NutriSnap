@@ -2,8 +2,10 @@ package com.example.huyng.nutrisnap;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -68,7 +70,39 @@ public class DiaryFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         // Set up tool bar
         toolbar = (Toolbar) getView().findViewById(R.id.toolbar);
+
+        //Disable appbar scrolling
         AppBarLayout appBar = (AppBarLayout) getView().findViewById(R.id.app_bar);
+        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) appBar.getLayoutParams();
+        AppBarLayout.Behavior appBarLayoutBehaviour = new AppBarLayout.Behavior();
+        appBarLayoutBehaviour.setDragCallback(new AppBarLayout.Behavior.DragCallback() {
+            @Override
+            public boolean canDrag(@NonNull AppBarLayout appBarLayout) {
+                return false;
+            }
+        });
+        layoutParams.setBehavior(appBarLayoutBehaviour);
+        /*
+        appBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                RecyclerView rv = (RecyclerView) getView().findViewById(R.id.rv);
+                ImageView arrow = (ImageView) getView().findViewById(R.id.arrow);
+                Log.d("AAA", String.valueOf(verticalOffset));
+                if (Math.abs(verticalOffset) == Math.abs(appBarLayout.getTotalScrollRange())) {
+                    expanded = false;
+                    ViewCompat.animate(arrow).rotation(0).start();
+                    rv.setNestedScrollingEnabled(false);
+                }
+                else if (verticalOffset == 0) {
+                    expanded = true;
+                    rv.setNestedScrollingEnabled(true);
+                    ViewCompat.animate(arrow).rotation(180).start();
+                }
+            }
+        });
+        */
 
         // Set up RecyclerView to display results
         RecyclerView rv = (RecyclerView) getView().findViewById(R.id.rv);
@@ -90,11 +124,11 @@ public class DiaryFragment extends Fragment {
         RecyclerView rv = (RecyclerView) getView().findViewById(R.id.rv);
         ImageView arrow = (ImageView) getView().findViewById(R.id.arrow);
         expanded = !expanded;
-        appBar.setExpanded(expanded,true);
         if (expanded) {
             ViewCompat.animate(arrow).rotation(180).start();
         } else {
             ViewCompat.animate(arrow).rotation(0).start();
         }
+        appBar.setExpanded(expanded,true);
     }
 }

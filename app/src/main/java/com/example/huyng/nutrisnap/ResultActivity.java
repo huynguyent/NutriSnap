@@ -53,7 +53,7 @@ public class ResultActivity extends AppCompatActivity
 
     private static final boolean MAINTAIN_ASPECT = true;
 
-    private Bitmap bitmap;
+    private Bitmap croppedBitmap;
 
     RecyclerAdapter adapter;
     ArrayList<Food> foodInfos;
@@ -85,10 +85,10 @@ public class ResultActivity extends AppCompatActivity
 
             try {
                 InputStream image_stream = getContentResolver().openInputStream(imageUri);
-                bitmap= BitmapFactory.decodeStream(image_stream );
+                Bitmap bitmap= BitmapFactory.decodeStream(image_stream );
 
                 // Crop bitmap for TensorFlow Classifier
-                Bitmap croppedBitmap = Bitmap.createBitmap(INPUT_SIZE, INPUT_SIZE, Config.ARGB_8888);
+                croppedBitmap = Bitmap.createBitmap(INPUT_SIZE, INPUT_SIZE, Config.ARGB_8888);
                 Matrix transformMatrix = getTransformationMatrix(
                                 bitmap.getWidth(), bitmap.getHeight(),
                                 INPUT_SIZE, INPUT_SIZE,
@@ -137,7 +137,7 @@ public class ResultActivity extends AppCompatActivity
         // Save image to storage
         if (imageName == null) {
             imageName = time + ".jpg";
-            imageName = saveBitmap(bitmap, imageName);
+            imageName = saveBitmap(croppedBitmap, imageName);
         }
         // Add entry to database
         Entry entry = new Entry(dialog.getCode(), time, dialog.getAmount(), imageName);

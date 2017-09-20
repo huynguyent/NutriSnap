@@ -17,6 +17,7 @@ import android.widget.TextView;
 import java.util.Locale;
 
 import static com.example.huyng.nutrisnap.R.id.fat;
+import static com.example.huyng.nutrisnap.R.id.protein;
 
 public class AddFoodDialogFragment extends DialogFragment {
     DialogListener mListener;
@@ -60,7 +61,7 @@ public class AddFoodDialogFragment extends DialogFragment {
         weightTxt = (TextView) addFoodView.findViewById(R.id.weight);
         calTxt = (TextView) addFoodView.findViewById(R.id.cal);
         carbTxt = (TextView) addFoodView.findViewById(R.id.carb);
-        proteinTxt = (TextView) addFoodView.findViewById(R.id.protein);
+        proteinTxt = (TextView) addFoodView.findViewById(protein);
         fatTxt = (TextView) addFoodView.findViewById(fat);
 
         // Set on click listeners for add and minus buttons
@@ -128,8 +129,10 @@ public class AddFoodDialogFragment extends DialogFragment {
         weightTxt.setText(String.format(Locale.getDefault(),"Weight: %d g", weight));
         int cal = amount * args.getInt("cal");
         calTxt.setText(String.format(Locale.getDefault(),"Calories: %d ", cal));
+        double carb = amount * args.getDouble("carb");
+        carbTxt.setText(String.format(Locale.getDefault(), "Protein: %.1f g", carb));
         double protein = amount * args.getDouble("protein");
-        proteinTxt.setText(String.format(Locale.getDefault(), "Protein: %.1f g", protein));
+        proteinTxt.setText(String.format(Locale.getDefault(), "Carbs: %.1f g", protein));
         double fat = amount * args.getDouble("fat");
         fatTxt.setText(String.format(Locale.getDefault(), "Fat: %.1f g", fat));
     }
