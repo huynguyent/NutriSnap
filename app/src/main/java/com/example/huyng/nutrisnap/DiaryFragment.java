@@ -11,16 +11,22 @@ import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.huyng.nutrisnap.database.Entry;
 import com.example.huyng.nutrisnap.database.EntryRepository;
 import com.example.huyng.nutrisnap.database.FoodRepository;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class DiaryFragment extends Fragment {
@@ -47,19 +53,25 @@ public class DiaryFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = getActivity();
+        expanded = false;
+
+        // Initialize database
         entryRepository = new EntryRepository(mContext);
         foodRepository = new FoodRepository(mContext);
-        entryList = entryRepository.getAllEntry();
+
+        // Initialize recycler view
+        Date today = Calendar.getInstance().getTime();
+        entryList = new ArrayList<Entry>();
+        entryList.addAll(entryRepository.findEntryByDate(today));
         adapter = new DiaryRecyclerAdapter(mContext, foodRepository, entryList);
         llm = new LinearLayoutManager(mContext);
-        expanded = false;
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_diary, container, false);
-
 
         // Inflate the layout for this fragment
         return view;
@@ -82,32 +94,39 @@ public class DiaryFragment extends Fragment {
             }
         });
         layoutParams.setBehavior(appBarLayoutBehaviour);
-        /*
-        appBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                RecyclerView rv = (RecyclerView) getView().findViewById(R.id.rv);
-                ImageView arrow = (ImageView) getView().findViewById(R.id.arrow);
-                Log.d("AAA", String.valueOf(verticalOffset));
-                if (Math.abs(verticalOffset) == Math.abs(appBarLayout.getTotalScrollRange())) {
-                    expanded = false;
-                    ViewCompat.animate(arrow).rotation(0).start();
-                    rv.setNestedScrollingEnabled(false);
-                }
-                else if (verticalOffset == 0) {
-                    expanded = true;
-                    rv.setNestedScrollingEnabled(true);
-                    ViewCompat.animate(arrow).rotation(180).start();
-                }
-            }
-        });
-        */
 
         // Set up RecyclerView to display results
-        RecyclerView rv = (RecyclerView) getView().findViewById(R.id.rv);
+        final RecyclerView rv = (RecyclerView) getView().findViewById(R.id.rv);
         rv.setLayoutManager(llm);
         rv.setAdapter(adapter);
+
+        // Listener for Calendar View
+        CalendarView calendarView = (CalendarView) getView().findViewById(R.id.calendar);
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView calendarView,
+                                            int year, int month, int day) {
+                // Get date from CalendarView
+                Calendar cal = Calendar.getInstance();
+                cal.set(Calendar.YEAR, year);
+                cal.set(Calendar.MONTH, month);
+                cal.set(Calendar.DAY_OF_MONTH, day);
+                Date date = cal.getTime();
+                Log.d("TAG", date.toString());
+
+                // Update data for recyclerview
+                entryList.clear();
+                entryList.addAll(entryRepository.findEntryByDate(date));
+                adapter.notifyDataSetChanged();
+                ((AppBarLayout) getView().findViewById(R.id.app_bar)).setExpanded(false);
+                expanded = false;
+
+                // Update title
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/YYYY");
+                TextView textView = (TextView) getView().findViewById(R.id.title_text);
+                textView.setText(df.format(date));
+            }
+        });
     }
 
     @Override

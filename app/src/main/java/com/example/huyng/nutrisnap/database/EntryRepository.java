@@ -4,10 +4,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.AsyncTask;
-import android.util.Log;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class EntryRepository {
@@ -51,20 +51,28 @@ public class EntryRepository {
         return entryList;
     }
 
-    private class GetDatabaseTask extends AsyncTask<Void, Void, Void> {
-        private final String TAG = "GetDatabaseTask";
+    public List<Entry> findEntryByDate(Date date) {
+        ArrayList<Entry> entryList = new ArrayList<Entry>();
+        SimpleDateFormat df = new SimpleDateFormat("YYYY-MM-DD");
+        String[] projection = {
+                Entry.COLUMN_FOOD_CODE,
+                Entry.COLUMN_TIME,
+                Entry.COLUMN_AMOUNT,
+                Entry.COLUMN_IMAGE
+        };
+        String selection = Entry.COLUMN_TIME+ " LIKE ?";
+        String[] selectionArgs = { df.format(date) + "%"};
+        Cursor cursor = readableDatabase.query(Entry.TABLE_NAME, projection, selection, selectionArgs, null, null, null);
+        while(cursor.moveToNext()) {
 
-        @Override
-        protected Void doInBackground(Void ... param) {
-            writeableDatabase = mDbHelper.getWritableDatabase();
-            readableDatabase = mDbHelper.getReadableDatabase();
-            return null;
+            String name = cursor.getString(cursor.getColumnIndexOrThrow(Entry.COLUMN_FOOD_CODE));
+            String time = cursor.getString(cursor.getColumnIndexOrThrow(Entry.COLUMN_TIME));
+            String image = cursor.getString(cursor.getColumnIndexOrThrow(Entry.COLUMN_IMAGE));
+            int amount = cursor.getInt(cursor.getColumnIndexOrThrow(Entry.COLUMN_AMOUNT));
+            entryList.add(new Entry(name, time, amount, image));
         }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            Log.d(TAG, "Get databases finished");
-        }
-
+        cursor.close();
+        return entryList;
     }
+
 }

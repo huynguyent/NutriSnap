@@ -130,9 +130,9 @@ public class AddFoodDialogFragment extends DialogFragment {
         int cal = amount * args.getInt("cal");
         calTxt.setText(String.format(Locale.getDefault(),"Calories: %d ", cal));
         double carb = amount * args.getDouble("carb");
-        carbTxt.setText(String.format(Locale.getDefault(), "Protein: %.1f g", carb));
+        carbTxt.setText(String.format(Locale.getDefault(), "Carbs %.1f g", carb));
         double protein = amount * args.getDouble("protein");
-        proteinTxt.setText(String.format(Locale.getDefault(), "Carbs: %.1f g", protein));
+        proteinTxt.setText(String.format(Locale.getDefault(), "Protein: %.1f g", protein));
         double fat = amount * args.getDouble("fat");
         fatTxt.setText(String.format(Locale.getDefault(), "Fat: %.1f g", fat));
     }

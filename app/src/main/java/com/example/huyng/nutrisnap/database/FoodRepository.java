@@ -43,6 +43,7 @@ public class FoodRepository {
                     cursor.getDouble(cursor.getColumnIndexOrThrow(Food.COLUMN_CARB))
                 );
         }
+        cursor.close();
         return food;
     }
 }

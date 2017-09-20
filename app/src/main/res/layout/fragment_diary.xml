@@ -47,6 +47,7 @@
                 android:background="@color/colorPrimary"
                 app:layout_collapseMode="pin">
                 <TextView
+                    android:id="@+id/title_text"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"

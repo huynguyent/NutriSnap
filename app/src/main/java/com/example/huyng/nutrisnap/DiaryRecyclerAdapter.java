@@ -63,32 +63,40 @@ public class DiaryRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.View
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof ChartViewHolder) {
             ChartViewHolder vh = (ChartViewHolder) holder;
-            // Calculate chart values
-            float fat = 0f;
-            float carbs = 0f;
-            float protein = 0f;
-            for (Entry entry : entryList) {
-                Food food = foodRepository.findFoodByCode(entry.getFoodCode());
-                fat += food.getFat() * entry.getAmount();
-                carbs += food.getCarb() * entry.getAmount();
-                protein += food.getProtein() * entry.getAmount();
+            if (entryList.size() == 0) {
+                vh.messageText.setVisibility(View.VISIBLE);
+                vh.chart.setVisibility(View.GONE);
             }
-            float total = fat + carbs + protein;
+            else {
+                vh.messageText.setVisibility(View.GONE);
+                vh.chart.setVisibility(View.VISIBLE);
+                // Calculate chart values
+                float fat = 0f;
+                float carbs = 0f;
+                float protein = 0f;
+                for (Entry entry : entryList) {
+                    Food food = foodRepository.findFoodByCode(entry.getFoodCode());
+                    fat += food.getFat() * entry.getAmount();
+                    carbs += food.getCarb() * entry.getAmount();
+                    protein += food.getProtein() * entry.getAmount();
+                }
+                float total = fat + carbs + protein;
 
-            // Set up Pie Chart
-            List<PieEntry> entries = new ArrayList<>();
-            entries.add(new PieEntry(fat, "Fat"));
-            entries.add(new PieEntry(carbs, "Carbs"));
-            entries.add(new PieEntry(protein, "Protein"));
-            PieDataSet set = new PieDataSet(entries, "Election Results");
-            set.setColors(ColorTemplate.MATERIAL_COLORS);
-            set.setValueTextSize(15f);
-            PieData data = new PieData(set);
-            vh.chart.setData(data);
-            vh.chart.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
-            vh.chart.getDescription().setEnabled(false);
-            vh.chart.getLegend().setEnabled(false);
-            vh.chart.animateX(1000);
+                // Set up Pie Chart
+                List<PieEntry> entries = new ArrayList<>();
+                entries.add(new PieEntry(fat, "Fat"));
+                entries.add(new PieEntry(carbs, "Carbs"));
+                entries.add(new PieEntry(protein, "Protein"));
+                PieDataSet set = new PieDataSet(entries, "Election Results");
+                set.setColors(ColorTemplate.MATERIAL_COLORS);
+                set.setValueTextSize(15f);
+                PieData data = new PieData(set);
+                vh.chart.setData(data);
+                vh.chart.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
+                vh.chart.getDescription().setEnabled(false);
+                vh.chart.getLegend().setEnabled(false);
+                vh.chart.animateX(700);
+            }
         }
         else {
             EntryViewHolder vh = (EntryViewHolder) holder;
@@ -163,11 +171,13 @@ public class DiaryRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.View
     public static class ChartViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
         PieChart chart;
+        TextView messageText;
 
         public ChartViewHolder(View itemView) {
             super(itemView);
             //cv = (CardView)itemView.findViewById(R.id.cv);
             chart = (PieChart) itemView.findViewById(R.id.chart);
+            messageText = (TextView) itemView.findViewById(R.id.message_text);
         }
     }
 
