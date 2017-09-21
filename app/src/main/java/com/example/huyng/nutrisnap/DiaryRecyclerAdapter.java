@@ -87,7 +87,7 @@ public class DiaryRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.View
                 entries.add(new PieEntry(fat, "Fat"));
                 entries.add(new PieEntry(carbs, "Carbs"));
                 entries.add(new PieEntry(protein, "Protein"));
-                PieDataSet set = new PieDataSet(entries, "Election Results");
+                PieDataSet set = new PieDataSet(entries, "");
                 set.setColors(ColorTemplate.MATERIAL_COLORS);
                 set.setValueTextSize(15f);
                 PieData data = new PieData(set);

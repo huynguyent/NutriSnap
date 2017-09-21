@@ -64,7 +64,6 @@ public class EntryRepository {
         String[] selectionArgs = { df.format(date) + "%"};
         Cursor cursor = readableDatabase.query(Entry.TABLE_NAME, projection, selection, selectionArgs, null, null, null);
         while(cursor.moveToNext()) {
-
             String name = cursor.getString(cursor.getColumnIndexOrThrow(Entry.COLUMN_FOOD_CODE));
             String time = cursor.getString(cursor.getColumnIndexOrThrow(Entry.COLUMN_TIME));
             String image = cursor.getString(cursor.getColumnIndexOrThrow(Entry.COLUMN_IMAGE));

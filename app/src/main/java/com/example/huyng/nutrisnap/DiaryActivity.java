@@ -37,7 +37,9 @@ public class DiaryActivity extends AppCompatActivity {
                     selectedFragment = PROGRESS_SELECTED;
                     diaryLayout.setVisibility(View.GONE);
                     progressLayout.setVisibility(View.VISIBLE);
-                    setTitle("Progress");
+                    setSupportActionBar(progressFragment.getToolbar());
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                    getSupportActionBar().setDisplayShowHomeEnabled(true);
                     return true;
             }
 
@@ -72,8 +74,7 @@ public class DiaryActivity extends AppCompatActivity {
             setSupportActionBar(diaryFragment.getToolbar());
         }
         else
-            //setSupportActionBar(progressFragment.getToolbar());
-            System.out.println();
+            setSupportActionBar(progressFragment.getToolbar());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         setTitle(" ");

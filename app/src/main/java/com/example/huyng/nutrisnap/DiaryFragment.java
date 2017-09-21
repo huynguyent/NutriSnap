@@ -121,10 +121,26 @@ public class DiaryFragment extends Fragment {
                 ((AppBarLayout) getView().findViewById(R.id.app_bar)).setExpanded(false);
                 expanded = false;
 
-                // Update title
-                SimpleDateFormat df = new SimpleDateFormat("dd/MM/YYYY");
+                // Update title to Today, Yesterday, or otherwise dd/MM/YYYY
+                Calendar todayCal = Calendar.getInstance();
+
                 TextView textView = (TextView) getView().findViewById(R.id.title_text);
-                textView.setText(df.format(date));
+                if (cal.get(Calendar.YEAR) == todayCal.get(Calendar.YEAR)
+                        && cal.get(Calendar.DAY_OF_YEAR) == todayCal.get(Calendar.DAY_OF_YEAR)) {
+                    textView.setText("Today");
+                } else {
+                    todayCal.add(Calendar.DAY_OF_YEAR, -1);
+                    if (cal.get(Calendar.YEAR) == todayCal.get(Calendar.YEAR)
+                            && cal.get(Calendar.DAY_OF_YEAR) == todayCal.get(Calendar.DAY_OF_YEAR)) {
+                        textView.setText("Yesterday");
+                    }
+                    else {
+                        SimpleDateFormat df = new SimpleDateFormat("dd/MM/YYYY");
+                        textView.setText(df.format(date));
+                    }
+                }
+
+
             }
         });
     }
