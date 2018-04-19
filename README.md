@@ -17,7 +17,9 @@ The image recognition was implemented by convolutional neural network. The model
 
 1. Clone the project
 
-`git clone https://github.com/okascout/NutriSnap.git`
+```
+git clone https://github.com/okascout/NutriSnap.git
+```
 
 2. Import the project to Android Studio
 
